@@ -21,15 +21,12 @@ matrix:
     - os: linux
       dist: bionic
     - os: osx
-      osx_image: xcode10.3
+      osx_image: xcode11
+      compiler: gcc
   allow_failures:
     - os: osx
 
 install:
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then
-        export PATH="$(brew --prefix llvm)/bin:$PATH";
-        echo $PATH;
-    fi
   - mkdir build && cd build && cmake ..
 script:
   - make VERBOSE=1
