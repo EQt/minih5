@@ -22,7 +22,6 @@ matrix:
       dist: bionic
     - os: osx
       osx_image: xcode11
-      compiler: gcc
   allow_failures:
     - os: osx
 
