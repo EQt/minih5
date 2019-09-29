@@ -22,7 +22,8 @@ os:
   - linux
   - osx
 
-test_script:
+install:
   - mkdir build && cd build && cmake ..
-  - make -j$(nproc)
+script:
+  - make
   - test/doctests -s
