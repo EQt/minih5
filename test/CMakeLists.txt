@@ -14,7 +14,7 @@ add_executable(doctests
     test_hdf5.cpp
 )
 target_link_libraries(doctests minih5)
-target_compile_features(doctests PUBLIC cxx_std_17)
+target_compile_features(doctests PUBLIC cxx_std_14)
 if (CMAKE_COMPILER_IS_GNUCC AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 8.0)
     message("-- stdc++fs")
     target_link_libraries(doctests stdc++fs)
