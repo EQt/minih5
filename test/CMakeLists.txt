@@ -9,9 +9,9 @@ FetchContent_GetProperties(doctesth)
 FetchContent_Populate(doctesth)
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
-set(CMAKE_CXX_STANDARD 17)
 add_executable(doctests
     doctests.cpp
     test_hdf5.cpp
 )
 target_link_libraries(doctests minih5)
+target_compile_features(doctests PUBLIC cxx_std_17)

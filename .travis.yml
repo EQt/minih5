@@ -21,14 +21,13 @@ matrix:
   include:
     - os: linux
       dist: bionic
-      env:
-        - CXX=g++-8
-        - CC=gcc-8
+      env: CXX=g++-8 CC=gcc-8 CXX_FOR_BUILD=g++-8 CC_FOR_BUILD=gcc-8
     - os: osx
       osx_image: xcode11
+      compiler: clang
 
 
 install: mkdir build && cd build && cmake ..
 script:
-  - make
+  - make VERBOSE=1
   - test/doctests -s
