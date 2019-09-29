@@ -15,18 +15,23 @@ addons:
   homebrew:
     packages:
       - hdf5
-      - clang
+      - llvm
 
 matrix:
   include:
     - os: linux
       dist: bionic
     - os: osx
-      osx_image: xcode11
       compiler: clang
+      env: CXX=clang++ CC=clang
+      osx_image: xcode11
 
-
-install: mkdir build && cd build && cmake ..
+install:
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then
+        export PATH="$(brew --prefix llvm)/bin:$PATH";
+        echo $PATH;
+    fi
+  - mkdir build && cd build && cmake ..
 script:
   - make VERBOSE=1
   - test/doctests -s

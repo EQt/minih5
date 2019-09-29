@@ -10,9 +10,12 @@ image:
   - Visual Studio 2017
 install:
   - vcpkg install hdf5
-
+cache:
+  - c:\Tools\vcpkg\installed
 build_script:
   - mkdir build
   - cd build
-  - cmake -G "%generator%" -T "%toolset%"  -DCMAKE_TOOLCHAIN_FILE=c:/Tools/vcpkg/scripts/buildsystems/vcpkg.cmake ..
-  - cmake --build . --config Release --target doctests
+  - cmake -DCMAKE_TOOLCHAIN_FILE=c:/Tools/vcpkg/scripts/buildsystems/vcpkg.cmake ..
+  - cmake --build . --config %CONFIGURATION% --target doctests
+
+test_script: "%CONFIGURATION%\\test\\doctests.exe -s"
