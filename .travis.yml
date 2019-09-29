@@ -1,0 +1,28 @@
+language: cpp
+dist: bionic
+
+notifications:
+  email:
+    on_failure: change
+    on_success: change
+
+branches:
+  only:
+    - master
+
+addons:
+  apt:
+    packages:
+      - libhdf5-dev
+  homebrew:
+    packages:
+      - hdf5
+
+os:
+  - linux
+  - osx
+
+test_script:
+  - mkdir build && cd build && cmake ..
+  - make -j$(nproc)
+  - test/doctests -s
