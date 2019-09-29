@@ -7,7 +7,7 @@ if (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
 endif()
 option(BUILD_TEST  "Compile unit tests" ${_MASTER_PROJECT})
 
-find_package(HDF5 COMPONENTS C)
+find_package(HDF5 REQUIRED COMPONENTS C)
 if (HDF5_FOUND)
     add_library(minih5 INTERFACE)
     set(HDF5_LIBRARIES ${HDF5_C_LIBRARIES})
