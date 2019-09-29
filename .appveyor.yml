@@ -18,4 +18,4 @@ build_script:
   - cmake -DCMAKE_TOOLCHAIN_FILE=c:/Tools/vcpkg/scripts/buildsystems/vcpkg.cmake ..
   - cmake --build . --config %CONFIGURATION% --target doctests
 
-test_script: "%CONFIGURATION%\\test\\doctests.exe -s"
+test_script: "test\\%CONFIGURATION%\\doctests.exe -s"
