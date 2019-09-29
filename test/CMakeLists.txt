@@ -13,6 +13,11 @@ add_executable(doctests
     doctests.cpp
     test_hdf5.cpp
 )
+
+if (MSVC)
+    add_compile_definitions(-D_CRT_SECURE_NO_WARNINGS)
+endif()
+
 target_link_libraries(doctests minih5)
 target_compile_features(doctests PUBLIC cxx_std_14)
 if (CMAKE_COMPILER_IS_GNUCC AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 8.0)
