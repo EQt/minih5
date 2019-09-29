@@ -15,3 +15,10 @@ add_executable(doctests
 )
 target_link_libraries(doctests minih5)
 target_compile_features(doctests PUBLIC cxx_std_17)
+if (CMAKE_COMPILER_IS_GNUCC AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 8.0)
+    message("-- stdc++fs")
+    target_link_libraries(doctests stdc++fs)
+else()
+    message("-- std::filesystem")
+endif()
+

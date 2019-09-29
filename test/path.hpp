@@ -1,6 +1,12 @@
 #pragma once
 #include <fstream>
-#include <filesystem>
+#if defined(__cpp_lib_filesystem)
+    #include <filesystem>
+    namespace fs = std::filesystem;
+#else
+    #include <experimental/filesystem>
+    namespace fs = std::experimental::filesystem;
+#endif
 
 
 class path
@@ -17,7 +23,7 @@ public:
     }
 
     static std::string cwd() {
-        return std::filesystem::current_path().string();
+        return fs::current_path().string();
     }
 
 
