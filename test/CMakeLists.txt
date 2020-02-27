@@ -13,23 +13,15 @@ add_executable(doctests
     doctests.cpp
     test_hdf5.cpp
 )
+target_link_libraries(doctests minih5)
+target_compile_features(doctests PUBLIC cxx_std_17)
 
 if (MSVC)
     add_compile_definitions(-D_CRT_SECURE_NO_WARNINGS)
-endif()
-
-target_link_libraries(doctests minih5)
-target_compile_features(doctests PUBLIC cxx_std_17)
-if (CMAKE_COMPILER_IS_GNUCC AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 8.0)
+elseif (CMAKE_COMPILER_IS_GNUCC AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 8.0)
     message("-- stdc++fs")
     target_link_libraries(doctests stdc++fs)
 elseif (APPLE)
+    target_compile_options(doctests PUBLIC "-stdlib=libc++")
     target_link_libraries(doctests "-stdlib=libc++")
-    # target_link_libraries(doctests c++)
-    # target_link_libraries(doctests c++experimental)
-    # target_link_libraries(doctests c++fs)
-    # target_link_libraries(doctests stdc++fs)
-else()
-    message("-- std::filesystem")
 endif()
-

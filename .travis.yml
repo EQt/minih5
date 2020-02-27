@@ -26,7 +26,7 @@ matrix:
     - os: osx
 
 install:
-  - mkdir build && cd build && cmake -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 ..
+  - mkdir build && cd build && cmake -DCMAKE_OSX_DEPLOYMENT_TARGET=10.14 ..
 script:
   - make VERBOSE=1
   - test/doctests -s
