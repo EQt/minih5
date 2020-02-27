@@ -1,7 +1,7 @@
 #pragma once
 #include <fstream>
 #include <string>
-#if defined(__cpp_lib_filesystem)
+#if defined(__cpp_lib_filesystem) && !defined(__APPLE__)
     #include <filesystem>
     namespace fs = std::filesystem;
 #else
