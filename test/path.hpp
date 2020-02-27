@@ -1,11 +1,25 @@
 #pragma once
 #include <fstream>
+#include <string>
 #if defined(__cpp_lib_filesystem)
     #include <filesystem>
     namespace fs = std::filesystem;
 #else
-    #include <experimental/filesystem>
-    namespace fs = std::experimental::filesystem;
+#  include <unistd.h>
+
+   namespace fs {
+
+   class current_path
+   {
+   public:
+       std::string string() const {
+           char *cwd = getcwd(nullptr, 0);
+           std::string s (cwd);
+           free(cwd);
+           return s;
+       }
+   };
+   }
 #endif
 
 

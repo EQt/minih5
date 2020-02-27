@@ -11,6 +11,7 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 add_executable(doctests
     doctests.cpp
+    test_path.cpp
     test_hdf5.cpp
 )
 target_link_libraries(doctests minih5)
@@ -21,7 +22,4 @@ if (MSVC)
 elseif (CMAKE_COMPILER_IS_GNUCC AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 8.0)
     message("-- stdc++fs")
     target_link_libraries(doctests stdc++fs)
-elseif (APPLE)
-    target_compile_options(doctests PUBLIC "-stdlib=libc++")
-    target_link_libraries(doctests "-stdlib=libc++")
 endif()
